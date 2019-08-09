@@ -22,4 +22,10 @@ module Enumerable
     self.my_each {|item| result.push(item) if yield(item)}
     result
   end
+
+  def my_all?
+    self.my_each {|item| return false if yield(item) == false}
+    true
+  end
+
 end
