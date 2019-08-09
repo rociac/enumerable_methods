@@ -24,12 +24,26 @@ module Enumerable
   end
 
   def my_all?
-    self.my_each {|item| return false if yield(item) == false}
+    self.my_each {|item| eturnr false if yield(item) == false}
     true
   end
 
   def my_any?
     self.my_each {|item| return true if yield(item)}
+    false
+  end
+
+  def my_none?
+    result = true
+    self.my_each do |item| 
+      if yield(item)
+        result = false
+        break
+      end
+    end
+    result
   end
 
 end
+
+puts %w{ant bear cat}.my_none? { |word| word.length >= 4 }
