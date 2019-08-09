@@ -28,4 +28,8 @@ module Enumerable
     true
   end
 
+  def my_any?
+    self.my_each {|item| return true if yield(item)}
+  end
+
 end
