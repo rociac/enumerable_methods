@@ -16,8 +16,10 @@ module Enumerable
       self
     end
   end
-end
 
-[:foo, :bar, :baz].my_each_with_index(2) do |value, index|
-  puts "#{index}: #{value}"
+  def my_select
+    result = []
+    self.my_each {|item| result.push(item) if yield(item)}
+    result
+  end
 end
