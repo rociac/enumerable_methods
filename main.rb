@@ -54,8 +54,23 @@ module Enumerable
     count
   end
 
+  def my_map(&proc)
+    return self.to_enum unless block_given?
+		new_array = []
+		if self.class == Hash
+			self.each do |k, v|
+				new_array << proc.call(k, v)
+			end
+			new_array
+		else
+			self.my_each do |x|
+				new_array << proc.call(x)
+			end
+			new_array
+		end
+  end
 end
 
 ary = [1, 2, 4, 2]
-puts ary.my_count
+puts ary.my_map
 
