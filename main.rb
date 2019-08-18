@@ -69,8 +69,22 @@ module Enumerable
 			new_array
 		end
   end
+
+  def my_inject
+    i = 1
+    sum = self[0]
+    while i < self.size
+      sum = yield(sum, self[i])
+      i += 1
+      end
+    return sum
+  end
+end
+
+def multiply_els(array)
+  array.my_inject {|product, item| product * item }
 end
 
 ary = [1, 2, 4, 2]
-puts ary.my_map
+puts multiply_els(ary)
 
