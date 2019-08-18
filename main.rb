@@ -44,6 +44,18 @@ module Enumerable
     result
   end
 
+  def my_count
+    count = 0
+    if block_given?
+      self.my_each {|item| count += 1 if yield(item)}
+    else
+      count = self.size
+    end
+    count
+  end
+
 end
 
-puts %w{ant bear cat}.my_none? { |word| word.length >= 4 }
+ary = [1, 2, 4, 2]
+puts ary.my_count
+
